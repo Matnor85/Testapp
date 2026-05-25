@@ -1,0 +1,603 @@
+@import url("https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Rajdhani:wght@400;600;700&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  animation: pageFadeIn 0.6s ease forwards;
+}
+
+@keyframes pageFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+body {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #1a0f05;
+  font-family: "Rajdhani", sans-serif;
+  overflow: hidden;
+}
+
+/* === TRÄPANEL BAKGRUND === */
+.wood-wall {
+  position: fixed;
+  inset: 0;
+  background-color: #5c3a1e;
+  background-image:
+    repeating-linear-gradient(
+      90deg,
+      rgba(0, 0, 0, 0) 0px,
+      rgba(0, 0, 0, 0) 18px,
+      rgba(0, 0, 0, 0.18) 18px,
+      rgba(0, 0, 0, 0.18) 22px,
+      rgba(0, 0, 0, 0) 22px,
+      rgba(0, 0, 0, 0) 40px,
+      rgba(255, 255, 255, 0.03) 40px,
+      rgba(255, 255, 255, 0.03) 42px
+    ),
+    repeating-linear-gradient(
+      180deg,
+      rgba(0, 0, 0, 0) 0px,
+      rgba(0, 0, 0, 0.04) 60px,
+      rgba(0, 0, 0, 0) 120px
+    );
+  background-size:
+    42px 100%,
+    100% 120px;
+}
+
+/* Trä-lameller vertikala */
+.wood-wall::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    90deg,
+    rgba(90, 50, 15, 0.9) 0px,
+    rgba(110, 65, 20, 1) 8px,
+    rgba(80, 45, 12, 0.95) 16px,
+    rgba(100, 58, 18, 0.92) 24px,
+    rgba(70, 40, 10, 0.9) 32px,
+    rgba(95, 55, 16, 0.95) 40px,
+    rgba(85, 48, 14, 0.92) 48px,
+    rgba(75, 42, 11, 0.9) 56px,
+    rgba(105, 62, 19, 0.95) 64px,
+    rgba(90, 50, 15, 0.9) 72px
+  );
+  background-size: 72px 100%;
+  mix-blend-mode: multiply;
+  opacity: 0.7;
+}
+
+/* Övergång ljus → mörk botten */
+.wood-wall::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0.1) 0%,
+    rgba(0, 0, 0, 0.4) 100%
+  );
+}
+
+/* === BANKOMAT SKYLT === */
+.bankomat-sign {
+  position: fixed;
+  top: 2.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #00b8d4;
+  color: #fff;
+  font-family: "Rajdhani", sans-serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 0.5rem 2.2rem 0.45rem;
+  border-radius: 4px;
+  z-index: 10;
+  box-shadow:
+    0 0 0 3px #007a90,
+    0 4px 24px rgba(0, 0, 0, 0.5);
+}
+
+.bankomat-sign sup {
+  font-size: 0.65rem;
+  vertical-align: super;
+}
+
+/* === YTTRE RAM (turkos) === */
+.atm-outer-frame {
+  position: relative;
+  z-index: 5;
+  background: #00b8d4;
+  border-radius: 8px;
+  padding: 0;
+  box-shadow:
+    0 0 0 4px #007a90,
+    0 20px 80px rgba(0, 0, 0, 0.7),
+    inset 0 2px 0 rgba(255, 255, 255, 0.2);
+  width: 420px;
+}
+
+/* Toppskylt på ramen */
+.atm-frame-header {
+  background: #00a8c2;
+  border-radius: 8px 8px 0 0;
+  padding: 0.7rem 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  border-bottom: 2px solid #007a90;
+}
+
+.atm-frame-header .satt-in {
+  color: #fff;
+  font-size: 1.15rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+}
+
+.atm-frame-header .divider {
+  width: 1px;
+  height: 1.4rem;
+  background: rgba(255, 255, 255, 0.5);
+}
+
+.atm-frame-header .ta-ut {
+  color: #fff;
+  font-size: 1.15rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+}
+
+/* Inre maskin (silver/grå) */
+.atm-machine {
+  background: linear-gradient(160deg, #b0b8c2 0%, #8a9099 40%, #9aa0a8 100%);
+  margin: 10px;
+  border-radius: 4px;
+  padding: 16px 14px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* === SKÄRM === */
+.screen-wrapper {
+  background: #1a1a2e;
+  border-radius: 4px;
+  padding: 3px;
+  border: 2px solid #2a2a40;
+  box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.8);
+}
+
+.screen {
+  background: linear-gradient(160deg, #0d3b6e 0%, #1a5fa0 40%, #0a7abf 100%);
+  border-radius: 2px;
+  padding: 14px 12px 12px;
+  min-height: 200px;
+  position: relative;
+  overflow: hidden;
+  font-family: "Share Tech Mono", monospace;
+}
+
+/* Skärmens glans */
+.screen::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 40%;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.07) 0%,
+    transparent 100%
+  );
+  pointer-events: none;
+}
+
+.screen-title {
+  color: #b8d8f8;
+  font-size: 0.72rem;
+  text-align: center;
+  margin-bottom: 10px;
+  letter-spacing: 0.05em;
+  opacity: 0.85;
+  padding-top: 4rem;
+}
+
+/* Menyn med knappar på sidorna */
+.screen-menu {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6px 10px;
+}
+
+.menu-item {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 5px 6px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 3px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.menu-item:hover {
+  background: rgba(255, 255, 255, 0.18);
+}
+
+.menu-arrow {
+  width: 12px;
+  height: 12px;
+  background: #00d4ff;
+  clip-path: polygon(
+    0 25%,
+    60% 25%,
+    60% 0%,
+    100% 50%,
+    60% 100%,
+    60% 75%,
+    0 75%
+  );
+  flex-shrink: 0;
+}
+
+.menu-item.right .menu-arrow {
+  clip-path: polygon(
+    100% 25%,
+    40% 25%,
+    40% 0%,
+    0% 50%,
+    40% 100%,
+    40% 75%,
+    100% 75%
+  );
+  order: 1;
+}
+
+.menu-item.right {
+  flex-direction: row-reverse;
+}
+
+.menu-label {
+  color: #c8e8ff;
+  font-size: 0.65rem;
+  line-height: 1.2;
+  letter-spacing: 0.02em;
+}
+
+.menu-value {
+  color: #00d4ff;
+  font-size: 0.65rem;
+  font-weight: bold;
+  margin-left: auto;
+}
+
+.menu-item.right .menu-value {
+  margin-left: 0;
+  margin-right: auto;
+}
+
+/* === KORTLÄSARE SEKTION === */
+.card-section {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 8px;
+}
+
+.card-reader {
+  background: #2a2a35;
+  border-radius: 3px;
+  width: 70px;
+  height: 42px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  border: 1px solid #3a3a45;
+  position: absolute;
+  bottom: 17rem;
+}
+
+.card-reader-light {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #00ff88;
+  box-shadow: 0 0 6px #00ff88;
+  animation: blink 2s ease-in-out infinite;
+}
+
+@keyframes blink {
+  0%,
+  90%,
+  100% {
+    opacity: 1;
+  }
+  95% {
+    opacity: 0.2;
+  }
+}
+
+.card-slot {
+  width: 44px;
+  height: 4px;
+  background: #111;
+  border-radius: 2px;
+  border: 1px solid #444;
+}
+
+/* Fingeravtryck SVG */
+.fp-icon {
+  width: 28px;
+  height: 28px;
+  opacity: 0.6;
+}
+
+/* === KVITTOSKRIVARE === */
+.receipt-area {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.receipt-slot {
+  background: #222;
+  border-radius: 2px;
+  width: 80px;
+  height: 18px;
+  border: 1px solid #333;
+  position: relative;
+  overflow: hidden;
+}
+
+.receipt-slot::after {
+  content: "";
+  position: absolute;
+  top: 4px;
+  left: 8px;
+  right: 8px;
+  height: 2px;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 1px;
+}
+
+/* === KORTINSÄTTNING (undre) === */
+.bottom-slots {
+  display: flex;
+  gap: 6px;
+  align-items: flex-end;
+}
+
+.bill-slot {
+  background: #1a1a1a;
+  border-radius: 3px;
+  flex: 1;
+  height: 28px;
+  border: 1px solid #333;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.bill-slot-inner {
+  width: 80%;
+  height: 4px;
+  background: #333;
+  border-radius: 2px;
+}
+
+/* Sedel-symbol */
+.cash-icon {
+  background: #1a1a1a;
+  border: 1px solid #333;
+  border-radius: 3px;
+  width: 42px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #04ff79;
+  font-size: 0.6rem;
+  letter-spacing: 0.05em;
+}
+
+/* === KNAPPSATS === */
+.keypad-section {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  margin-top: 4px;
+}
+
+.keypad {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 4px;
+  flex: 1;
+}
+
+.key {
+  background: linear-gradient(180deg, #2a2a35 0%, #1a1a22 100%);
+  border: 1px solid #3a3a48;
+  border-radius: 3px;
+  color: #c8c8d8;
+  font-family: "Share Tech Mono", monospace;
+  font-size: 0.9rem;
+  padding: 7px 4px;
+  text-align: center;
+  cursor: pointer;
+  user-select: none;
+  transition:
+    background 0.1s,
+    transform 0.1s;
+  box-shadow: 0 2px 0 #111;
+}
+
+.key:hover {
+  background: linear-gradient(180deg, #3a3a48 0%, #2a2a35 100%);
+}
+.key:active {
+  transform: translateY(1px);
+  box-shadow: none;
+}
+
+.key.cancel {
+  color: #ff6666;
+  border-color: #553333;
+}
+.key.clear {
+  color: #ffaa44;
+  border-color: #554422;
+}
+.key.confirm {
+  color: #44dd88;
+  border-color: #225533;
+}
+
+/* Sidoknappar (bredvid skärmen, vertikal layout) */
+.side-keys {
+  display: flex;
+  flex-direction: column;
+  padding-top: 1.3rem;
+  gap: 0.75rem;
+}
+
+.side-key {
+  background: linear-gradient(180deg, #333 0%, #222 100%);
+  border: 1px solid #444;
+  border-radius: 3px;
+  width: 22px;
+  height: 22px;
+  cursor: pointer;
+  transition: background 0.1s;
+}
+.right-side {
+  padding-right: 3rem;
+}
+
+.side-key:hover {
+  background: linear-gradient(180deg, #444 0%, #333 100%);
+}
+
+/* Låssymbol på ramen */
+.lock-badge {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 28px;
+  height: 28px;
+  background: #a1bfc5;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow:
+    0 0 0 2px #00b8d4,
+    0 0 0 4px #007a90;
+  z-index: 2;
+}
+
+.lock-icon {
+  font-size: 14px;
+  color: #fff;
+}
+
+/* Ruramen mellan header och maskin */
+.atm-frame-mid {
+  position: relative;
+  background: #00b8d4;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Nederkant ram */
+.atm-frame-bottom {
+  background: #00a8c2;
+  border-radius: 0 0 8px 8px;
+  height: 12px;
+}
+
+/* Highlight på ramen */
+.atm-outer-frame::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 50%;
+  border-radius: 8px 8px 0 0;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.12) 0%,
+    transparent 100%
+  );
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Golv */
+.floor {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 120px;
+  background: linear-gradient(180deg, #c8c0a8 0%, #b8b098 100%);
+  background-image:
+    repeating-linear-gradient(
+      90deg,
+      rgba(0, 0, 0, 0.04) 0px,
+      rgba(0, 0, 0, 0.04) 1px,
+      transparent 1px,
+      transparent 120px
+    ),
+    repeating-linear-gradient(
+      0deg,
+      rgba(0, 0, 0, 0.04) 0px,
+      rgba(0, 0, 0, 0.04) 1px,
+      transparent 1px,
+      transparent 120px
+    );
+  background-size: 120px 120px;
+  z-index: 1;
+  box-shadow: inset 0 20px 30px rgba(0, 0, 0, 0.3);
+}
+
+/* Tillbaka-knapp */
+.back-button {
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  background-color: #007bff;
+  color: white;
+  padding: 8px 16px;
+  text-decoration: none;
+  border-radius: 4px;
+  z-index: 20;
+}
+
+.back-button:hover {
+  background-color: #0056b3;
+}

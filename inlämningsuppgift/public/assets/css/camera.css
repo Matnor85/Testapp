@@ -1,0 +1,61 @@
+/* ─────────────────────────────────────────
+   camera.css – Konvex säkerhetsspegel
+   ───────────────────────────────────────── */
+
+.atm-mirror {
+  position: absolute;
+
+  /* Spegelns position på bankomatbilden – justera vid behov */
+  left: 46.3%;
+  top: 21%;
+
+  /* Storlek relativt till bankomatbehållaren */
+  width: 9.5%;
+  aspect-ratio: 1 / 1;
+
+  z-index: 5;
+}
+
+/* Rund klippmask som håller kameravyn cirkulär */
+.atm-mirror__clip {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+/* Canvas speglas horisontellt (som en riktig spegel) */
+.atm-mirror__canvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+  transform: scaleX(-1);
+}
+
+/* Blå idle-bakgrund – visas tills kameran startat */
+.atm-mirror__idle {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle at 35% 30%,
+    #d8dde3 0%,
+    #a8b0b8 60%,
+    #7a8490 100%
+  );
+  z-index: 2;
+  transition: opacity 0.6s ease;
+}
+
+.atm-mirror__idle.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* SVG-lager: glasglans + metallram ovanpå kameravyn */
+.atm-mirror__overlay {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 3;
+}

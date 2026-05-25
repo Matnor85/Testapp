@@ -1,0 +1,506 @@
+/* =============================================================
+   admin.css — Stilar för admin-panelen
+   ============================================================= */
+
+/* ── RESET ── */
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* ── CSS-VARIABLER ── */
+:root {
+    --bg:         #0a0f0a;
+    --surface:    #0f1a0f;
+    --surface2:   #142014;
+    --border:     #1a3a1a;
+    --accent:     #00ff41;
+    --accent-dim: #00b82e;
+    --text:       #c8ffc8;
+    --muted:      #4a8a4a;
+    --danger:     #ff4141;
+    --success:    #00ff41;
+    --warning:    #ffaa00;
+    --radius:     4px;
+}
+
+/* ── BODY ── */
+body {
+    font-family: 'Courier New', monospace;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Scanlines-effekt */
+body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background: repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 2px,
+        rgba(0, 255, 65, 0.015) 2px,
+        rgba(0, 255, 65, 0.015) 4px
+    );
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* ── NAV ── */
+nav {
+    position: relative;
+    z-index: 100;
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    padding: 0 2rem;
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    height: 52px;
+}
+
+.nav-brand {
+    font-size: 0.85rem;
+    font-weight: bold;
+    color: var(--accent);
+    letter-spacing: 0.15em;
+    text-decoration: none;
+    text-transform: uppercase;
+}
+
+.nav-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--accent);
+    box-shadow: 0 0 6px var(--accent);
+    animation: pulse 2s infinite;
+    flex-shrink: 0;
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50%       { opacity: 0.3; }
+}
+
+.nav-links {
+    display: flex;
+    gap: 0.25rem;
+    flex: 1;
+}
+
+.nav-links a {
+    color: var(--muted);
+    text-decoration: none;
+    padding: 5px 12px;
+    border-radius: var(--radius);
+    font-size: 0.8rem;
+    letter-spacing: 0.08em;
+    border: 1px solid transparent;
+    transition: color 0.15s, background 0.15s;
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+    color: var(--accent);
+    border-color: var(--border);
+    background: rgba(0, 255, 65, 0.05);
+}
+
+.nav-user {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    font-size: 0.8rem;
+    color: var(--muted);
+}
+
+.nav-user strong { color: var(--accent); }
+
+.btn-logout {
+    background: transparent;
+    border: 1px solid var(--border);
+    color: var(--muted);
+    padding: 4px 12px;
+    border-radius: var(--radius);
+    cursor: pointer;
+    font-size: 0.78rem;
+    font-family: 'Courier New', monospace;
+    text-decoration: none;
+    letter-spacing: 0.08em;
+    transition: border-color 0.15s, color 0.15s;
+}
+
+.btn-logout:hover {
+    border-color: var(--danger);
+    color: var(--danger);
+}
+
+/* ── MAIN ── */
+main {
+    position: relative;
+    z-index: 1;
+    flex: 1;
+    padding: 2rem;
+    max-width: 1100px;
+    width: 100%;
+    margin: 0 auto;
+}
+
+/* ── RUBRIKER ── */
+h1 {
+    font-size: 1.3rem;
+    font-weight: bold;
+    margin-bottom: 1.5rem;
+    color: var(--accent);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+}
+
+h2 {
+    font-size: 0.85rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+    color: var(--muted);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+}
+
+h3 {
+    font-size: 0.95rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+    color: var(--accent);
+}
+
+/* ── CARD ── */
+.card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+/* ── FORMULÄR ── */
+.form-group {
+    margin-bottom: 1.2rem;
+}
+
+label {
+    display: block;
+    font-size: 0.7rem;
+    color: var(--muted);
+    margin-bottom: 6px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+}
+
+input[type="text"],
+input[type="number"],
+input[type="password"],
+input[type="date"],
+select {
+    width: 100%;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    color: var(--accent);
+    padding: 9px 12px;
+    font-size: 0.9rem;
+    font-family: 'Courier New', monospace;
+    transition: border-color 0.15s;
+}
+
+input:focus,
+select:focus {
+    outline: none;
+    border-color: var(--accent);
+    box-shadow: 0 0 8px rgba(0, 255, 65, 0.1);
+}
+
+small {
+    color: var(--muted);
+    display: block;
+    margin-top: 0.25rem;
+    font-size: 0.78rem;
+}
+
+/* ── KNAPPAR ── */
+.btn {
+    display: inline-block;
+    padding: 8px 18px;
+    border-radius: var(--radius);
+    font-size: 0.8rem;
+    font-weight: bold;
+    font-family: 'Courier New', monospace;
+    cursor: pointer;
+    border: 1px solid;
+    text-decoration: none;
+    letter-spacing: 0.08em;
+    transition: background 0.15s, box-shadow 0.15s;
+}
+
+.btn-primary {
+    background: transparent;
+    border-color: var(--accent);
+    color: var(--accent);
+}
+
+.btn-primary:hover {
+    background: rgba(0, 255, 65, 0.08);
+    box-shadow: 0 0 10px rgba(0, 255, 65, 0.15);
+}
+
+.btn-danger {
+    background: transparent;
+    border-color: var(--danger);
+    color: var(--danger);
+}
+
+.btn-danger:hover {
+    background: rgba(255, 65, 65, 0.08);
+}
+
+.btn-secondary {
+    background: transparent;
+    border-color: var(--border);
+    color: var(--muted);
+}
+
+.btn-secondary:hover {
+    border-color: var(--accent-dim);
+    color: var(--text);
+}
+
+/* ── ALERTS ── */
+.alert {
+    padding: 10px 14px;
+    border-radius: var(--radius);
+    margin-bottom: 1.2rem;
+    font-size: 0.82rem;
+    letter-spacing: 0.05em;
+}
+
+.alert-error {
+    background: rgba(255, 65, 65, 0.08);
+    border: 1px solid var(--danger);
+    color: var(--danger);
+}
+
+.alert-success {
+    background: rgba(0, 255, 65, 0.08);
+    border: 1px solid var(--accent);
+    color: var(--accent);
+}
+
+/* ── TABELLER ── */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.82rem;
+}
+
+th {
+    text-align: left;
+    padding: 8px 12px;
+    color: var(--muted);
+    font-weight: bold;
+    border-bottom: 1px solid var(--border);
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+}
+
+th a {
+    color: var(--accent);
+    text-decoration: none;
+}
+
+th a:hover { text-decoration: underline; }
+
+td {
+    padding: 10px 12px;
+    border-bottom: 1px solid rgba(26, 58, 26, 0.5);
+    color: var(--text);
+}
+
+tr:last-child td { border-bottom: none; }
+tr:hover td { background: rgba(0, 255, 65, 0.02); }
+
+/* ── BADGES ── */
+.badge {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 2px;
+    font-size: 0.7rem;
+    font-weight: bold;
+    letter-spacing: 0.08em;
+    border: 1px solid;
+}
+
+.badge-admin       { border-color: var(--accent);     color: var(--accent); }
+.badge-user        { border-color: var(--muted);      color: var(--muted); }
+.badge-deposit     { border-color: #00ff41;            color: #00ff41; }
+.badge-withdrawal  { border-color: var(--danger);     color: var(--danger); }
+.badge-transfer    { border-color: var(--warning);    color: var(--warning); }
+.badge-bill_payment { border-color: var(--accent-dim); color: var(--accent-dim); }
+
+/* Status-indikatorer */
+.status-active  { color: var(--success); font-size: 0.85rem; }
+.status-frozen  { color: var(--danger);  font-size: 0.85rem; }
+
+/* ── PAGINERING ── */
+.pagination {
+    display: flex;
+    gap: 0.5rem;
+    margin-top: 1.5rem;
+    justify-content: center;
+}
+
+.pagination a,
+.pagination span {
+    padding: 5px 10px;
+    border-radius: var(--radius);
+    font-size: 0.78rem;
+    text-decoration: none;
+    border: 1px solid var(--border);
+    color: var(--muted);
+    font-family: 'Courier New', monospace;
+}
+
+.pagination a:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+}
+
+.pagination .current {
+    border-color: var(--accent);
+    color: var(--accent);
+    background: rgba(0, 255, 65, 0.08);
+}
+
+/* ── ADMIN LOGIN ── */
+.login-wrap {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    max-width: 820px;
+    padding: 1rem;
+    margin: 0 auto;
+}
+
+.login-logo {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.login-logo .icon {
+    font-size: 3rem;
+    display: block;
+    margin-bottom: 0.5rem;
+    animation: flicker 4s infinite;
+}
+
+@keyframes flicker {
+    0%, 95%, 100% { opacity: 1; }
+    96%           { opacity: 0.4; }
+    97%           { opacity: 1; }
+    98%           { opacity: 0.2; }
+    99%           { opacity: 1; }
+}
+
+.login-logo .title {
+    font-size: 1rem;
+    font-weight: bold;
+    color: var(--accent);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+}
+
+.login-logo .subtitle {
+    color: var(--muted);
+    font-size: 0.75rem;
+    margin-top: 6px;
+    letter-spacing: 0.1em;
+}
+
+.login-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 2rem;
+    box-shadow: 0 0 30px rgba(0, 255, 65, 0.05), inset 0 0 30px rgba(0, 0, 0, 0.3);
+}
+
+.terminal-header {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--border);
+}
+
+.terminal-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--accent);
+    box-shadow: 0 0 6px var(--accent);
+    animation: pulse 2s infinite;
+}
+
+.terminal-title {
+    font-size: 0.75rem;
+    color: var(--muted);
+    letter-spacing: 0.1em;
+}
+
+.prompt {
+    font-size: 0.75rem;
+    color: var(--muted);
+    margin-bottom: 1.5rem;
+}
+
+.prompt span { color: var(--accent); }
+
+.btn-login {
+    width: 100%;
+    padding: 11px;
+    background: transparent;
+    color: var(--accent);
+    border: 1px solid var(--accent);
+    border-radius: var(--radius);
+    font-size: 0.85rem;
+    font-weight: bold;
+    font-family: 'Courier New', monospace;
+    cursor: pointer;
+    margin-top: 0.5rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    transition: background 0.15s, box-shadow 0.15s;
+}
+
+.btn-login:hover {
+    background: rgba(0, 255, 65, 0.08);
+    box-shadow: 0 0 12px rgba(0, 255, 65, 0.2);
+}
+
+.back-link {
+    display: block;
+    text-align: center;
+    margin-top: 1.5rem;
+    font-size: 0.75rem;
+    color: var(--muted);
+    text-decoration: none;
+    letter-spacing: 0.1em;
+    transition: color 0.15s;
+}
+
+.back-link:hover { color: var(--accent); }
